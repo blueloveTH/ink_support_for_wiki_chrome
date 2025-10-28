@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Ink Support for Wiki",
+  "version": "1.0",
+  "description": "Detects ink code blocks on wiki.hclcat.games",
+  "permissions": ["scripting", "contextMenus"],
+  "host_permissions": ["https://wiki.hclcat.games/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://wiki.hclcat.games/*"],
+      "js": ["inject.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "contextMenus.js"
+  }
+}
