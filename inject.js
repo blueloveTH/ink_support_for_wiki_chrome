@@ -3,7 +3,11 @@ var lastRightClickedCodeBlockText = "";
 chrome.runtime?.onMessage?.addListener((message, sender, sendResponse) => {
     const text = lastRightClickedCodeBlockText;
     if (message.action === "runInkOnWiki" && text) {
-        const url = `https://gyc.hclcat.games/ink/preview/index.html?story=${encodeURIComponent(text)}`;
+        // I have pako.min.js
+        // compress text using pako and encode to base64, I will decompress it in the server via python's zlib and base64
+        const text1 = pako.deflate(text, { to: 'string' });
+        const text2 = btoa(text1);
+        const url = `https://gyc.hclcat.games/ink/preview/index.html?story=${encodeURIComponent(text2)}`;
         window.open(url, "_blank");
         lastRightClickedCodeBlockText = "";
     }

@@ -8,7 +8,7 @@
   "content_scripts": [
     {
       "matches": ["https://wiki.hclcat.games/*"],
-      "js": ["inject.js"],
+      "js": ["inject.js", "pako.min.js"],
       "run_at": "document_idle"
     }
   ],
